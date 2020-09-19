@@ -8,7 +8,8 @@ const { findUserByID, findUserByEmail, validateUser } = require("./login");
 const register = require("./register");
 //const session = require("express-session");
 const keys = require("../keys");
-const cookieSession = require('cookie-session')
+const cookieSession = require('cookie-session');
+const { nextTick } = require("process");
 
 const App = express();
 
@@ -79,8 +80,8 @@ App.get("/login", (req, res) => {
 
 App.post(
   "/login",
-  passport.authenticate("local", { failureRedirect: '/' }), (err, req, res, next) => {
-     
+  passport.authenticate("local"), function (req, res) {
+    res.json(req.user)
   }
 );
 
@@ -107,14 +108,6 @@ App.get("/", (req, res) => {
   res.sendFile(PATH + "index.html");
 });
 
-
-
-
-App.get("/*?", (req, res) => {
-  //console.log(CURR_PATH + '/img/' + req.params[0])
-  res.sendFile(PATH + req.params[0]);
-});
-
 const dashboardRouter = express.Router();
 
 App.use(
@@ -122,10 +115,26 @@ App.use(
     dashboardRouter
 );
 
+dashboardRouter.use((req, res, next) => {
+    if(req.user) {
+    next()
+    } else {
+        res.redirect('/login')
+    }
+})
+
 dashboardRouter.get("/*?", (req, res) => {
     //console.log(CURR_PATH + '/img/' + req.params[0])
     res.sendFile(PATH + "index.html");
   });
+
+App.get("/*?", (req, res) => {
+  //console.log(CURR_PATH + '/img/' + req.params[0])
+  res.sendFile(PATH + req.params[0]);
+});
+
+
+
 
 App.listen(3000, () => {
   console.log("Running on port 3000!");

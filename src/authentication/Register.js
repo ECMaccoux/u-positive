@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function submitData() {
     fetch('/register', {
@@ -64,7 +65,8 @@ export default class Register extends React.Component {
                         <Form.Label>Agree to Terms and Conditions</Form.Label>
                         <Form.Control type='checkbox'></Form.Control>
                     </Form.Group>
-                    <Button onClick={e => {submitData()}}>Create Account</Button>   
+                    <Button onClick={e => {submitData()}}>Create Account</Button>
+                    <Link to={"/"} className="btn">Cancel</Link>   
                     </Form>
                            
                 </Col>

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Navbar, Button, Nav } from 'react-bootstrap'
+import { Navbar, Button, Nav, } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 export default class TopNav extends React.Component {
     constructor(props) {
@@ -14,8 +15,8 @@ export default class TopNav extends React.Component {
                     <Nav.Item>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Button variant="primary" className="upos-nav-btn">Sign Up</Button>
-                            <Button variant="primary" className="upos-nav-btn">Log In</Button>
+                            <Link to={"/register"} className="btn btn-primary upos-nav-btn">Sign Up</Link>
+                            <Link to={"/login"} className="btn btn-primary upos-nav-btn">Log In</Link>
                         </Navbar.Collapse>
                     </Nav.Item>
                 </Nav>

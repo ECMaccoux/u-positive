@@ -1,21 +1,35 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import FrontPage from './FrontPage'
-import TopNav from './Components/TopNav'
+import React from "react";
+import ReactDOM from "react-dom";
+import FrontPage from "./FrontPage";
+import TopNav from "./Components/TopNav";
+import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
+import Register from "./authentication/Register";
 
 class Main extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-        <div>
-            <TopNav></TopNav>
-            <FrontPage></FrontPage>
-        </div>)
-    }
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/">
+            <div>
+              <TopNav></TopNav>
+              <FrontPage></FrontPage>
+            </div>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
-const wrapper = document.getElementById('root')
-wrapper ? ReactDOM.render(<Main />, wrapper) : console.log('Unable to locate root')
+const wrapper = document.getElementById("root");
+wrapper
+  ? ReactDOM.render(<Main />, wrapper)
+  : console.log("Unable to locate root");

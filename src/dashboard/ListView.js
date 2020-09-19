@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
 
 export default class ListView extends React.Component {
     constructor(props) {
@@ -12,9 +11,8 @@ export default class ListView extends React.Component {
         return (
             <div>
                 <Container fluid="md" className='section'>
-                    <br></br>
                     <Row style={{paddingBottom: 10}}>
-                        <h2>Hello, {this.props.myInfo.firstName}!</h2>
+                        <h2 style={{paddingLeft: 10}}>Hello, {this.props.myInfo.firstName}!</h2>
                     </Row>
                     <Row>
                         <Col>

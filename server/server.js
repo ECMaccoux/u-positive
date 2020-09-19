@@ -103,6 +103,12 @@ App.post("/register", (req, res) => {
   }
 });
 
+App.get('/logout', (req, res) => {
+    req.logout()
+    res.redirect('/')
+    
+})
+
 App.get("/", (req, res) => {
   //console.log(CURR_PATH + '/img/' + req.params[0])
   res.sendFile(PATH + "index.html");

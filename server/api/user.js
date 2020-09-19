@@ -13,13 +13,19 @@ function getUserInfo(id) {
 }
 
 userRouter.get('/', (req, res) => {
-    getUserInfo(req.user.userID)
+    if (req.user) {
+        getUserInfo(req.user.userID)
     .then(row => {
         res.json(row).status(200)
     })
     .catch(err => {
+        console.log(err)
         res.status(500)
     })
+    } else {
+        res.json({err: 'Not currently logged in'})
+    }
+    
 })
 
 userRouter.put('/', (req, res) => {

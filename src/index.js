@@ -23,7 +23,9 @@ class Main extends React.Component {
         return res.json();
       })
       .then((res) => {
-        this.setState({ myInfo: res[0] });
+          if(res[0]) {
+            this.setState({ myInfo: res[0] });
+          }
       })
       .catch((err) => {
         console.log(err);

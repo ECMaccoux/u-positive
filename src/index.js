@@ -1,84 +1,52 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
-
 import LandingPage from "./LandingPage";
 import TopNav from "./Components/TopNav";
-
 import Register from "./authentication/Register";
 import Login from "./authentication/Login";
-
-import ListView from "./Dashboard/ListView"
-import GraphView from "./Dashboard/GraphView"
-import JournalView from "./Dashboard/JournalView"
-import NewJournal from "./Dashboard/NewJournal"
-
-import Anxiety from "./questionaires/Anxiety"
+import DashboardRouter from "./DashboardRouter";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    
     this.state = {
-        myInfo: {}
-    }
+      myInfo: {},
+    };
   }
 
   componentDidMount() {
-      fetch('/api/user', {
-          method: 'GET'
+    fetch("/api/user", {
+      method: "GET",
+    })
+      .then((res) => {
+        return res.json();
       })
-      .then(res => {
-          return res.json()
+      .then((res) => {
+        this.setState({ myInfo: res[0] });
       })
-      .then(res => {
-          this.setState({myInfo: res[0]})
-      })
-      .catch(err => {
-          console.log(err)
-          alert('An error occurred while loading the page.')
-      })
+      .catch((err) => {
+        console.log(err);
+        alert("An error occurred while loading the page.");
+      });
   }
 
   render() {
     return (
       <BrowserRouter history={history}>
+        <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
         <Switch>
           <Route path="/register">
-              <TopNav isLanding={false}></TopNav>
-              <Register />
+            <Register />
           </Route>
           <Route path="/login">
-              <Login />
+            <Login />
           </Route>
-          
-          <Route exact path="/dashboard">
-              <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
-              <ListView myInfo={this.state.myInfo} />
+          <Route path="/dashboard">
+            <DashboardRouter myInfo={this.state.myInfo} />
           </Route>
-          <Route path="/dashboard/graph" >
-              <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
-              <GraphView myInfo={this.state.myInfo} />
-          </Route>
-          <Route exact path="/dashboard/journal">
-              <TopNav isHome={true}></TopNav>
-              <JournalView myInfo={this.state.myInfo} />
-          </Route>
-          <Route path="/dashboard/journal/new">
-              <TopNav isHome={true}></TopNav>
-              <NewJournal myInfo={this.state.myInfo} />
-          </Route>
-
-          <Route path="/dashboard/anxiety">
-              <TopNav isHome={true}></TopNav>
-              <Anxiety myInfo={this.state.myInfo} />
-          </Route>
-
           <Route exact path="/">
-            <div>
-              <TopNav isLanding={true}></TopNav>
-              <LandingPage myInfo={this.state.myInfo}></LandingPage>
-            </div>
+            <LandingPage myInfo={this.state.myInfo}></LandingPage>
           </Route>
         </Switch>
       </BrowserRouter>

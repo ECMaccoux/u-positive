@@ -4,6 +4,7 @@ import LandingPage from "./LandingPage";
 import TopNav from "./Components/TopNav";
 import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
 import Register from "./authentication/Register";
+import Login from "./authentication/Login";
 import Dashboard from "./Dashboard"
 
 class Main extends React.Component {
@@ -22,6 +23,9 @@ class Main extends React.Component {
           <Route path="/dashboard">
               <TopNav isHome={true}></TopNav>
               <Dashboard />
+          </Route>
+          <Route path="/login">
+              <Login />
           </Route>
           <Route exact path="/">
             <div>

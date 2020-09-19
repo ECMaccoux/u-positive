@@ -73,6 +73,9 @@ export default class Register extends React.Component {
                     </Form>
                            
                 </Col>
+                <Col md='6' style={{alignSelf: 'center', display: 'flex'}}>
+                    <img src='/img/MainLogo1000px.png' width='50%' className='m-auto'></img>
+                </Col>
             </Row>
         </Container>
     }

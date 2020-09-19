@@ -12,7 +12,7 @@ export default class LandingPage extends React.Component {
                 
             </div>
             <div id='landing-card' className='text-center'>
-            <h1>U+</h1>
+            <img src='/img/MainLogo1000px.png' width='30%'></img>
             <p>Find yourself today.</p>
         </div>
         </div>

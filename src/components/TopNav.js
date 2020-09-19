@@ -13,7 +13,7 @@ export default class TopNav extends React.Component {
         if(this.props.myInfo.userID) {
             return (
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
-                        <Navbar.Brand href="/dashboard">U Positive</Navbar.Brand>
+                        <Navbar.Brand href="/dashboard"><img src='/img/MainLogo1000px.png' width='40px'></img></Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className='ml-auto'>
@@ -29,7 +29,7 @@ export default class TopNav extends React.Component {
             return (
                 
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
-                <Navbar.Brand href="/dashboard">U Positive</Navbar.Brand>
+                <Navbar.Brand href="/dashboard"><img src='/img/MainLogo1000px.png' width='40px'></img></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className='ml-auto'> 

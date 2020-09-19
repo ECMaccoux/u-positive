@@ -8,9 +8,24 @@ export default class Depression extends React.Component {
 
     render() {
         return (
-            <Container>
-                
-            </Container>
+            <div>
+                <br></br>
+                <Container fluid="md">
+                    <Row>
+                        <Col>
+                            <Link to={"/dashboard"} className="btn btn-outline-primary upos-nav-btn">Back</Link>
+                        </Col>
+                        <Col>
+                            <Link to={"/dashboard/journal/new"} className="btn btn-primary upos-nav-btn float-right">New Journal</Link>
+                            <Link to={"/dashboard/journal"} className="btn btn-outline-primary upos-nav-btn float-right">All Journals</Link>
+                        </Col>
+                    </Row>
+                    <hr></hr>
+                    <Row>
+                        <h2>Depression</h2>
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }

@@ -32,7 +32,7 @@ class Main extends React.Component {
               <Login />
           </Route>
           
-          <Route path="/dashboard">
+          <Route exact path="/dashboard">
               <TopNav isHome={true}></TopNav>
               <ListView />
           </Route>
@@ -40,7 +40,7 @@ class Main extends React.Component {
               <TopNav isHome={true}></TopNav>
               <GraphView />
           </Route>
-          <Route path="/dashboard/journal">
+          <Route exact path="/dashboard/journal">
               <TopNav isHome={true}></TopNav>
               <JournalView />
           </Route>

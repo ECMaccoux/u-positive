@@ -35,11 +35,11 @@ export default class ListView extends React.Component {
                     </Row>
                     <Row className="upos-dash-row">
                         <Col>
-                            <LinkContainer to={"/dashboard/anxiety"}>
+                            <Link to={"/dashboard/anxiety"} style={{ textDecoration: 'none', color: "black"}}>
                                 <Card className="upos-dash-card">
                                     <Card.Body><h5>Anxiety</h5></Card.Body>
                                 </Card>
-                            </LinkContainer>
+                            </Link>
                         </Col>
                         <Col>
                             <Card className="upos-dash-card">

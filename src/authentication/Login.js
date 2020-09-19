@@ -12,13 +12,12 @@ function login() {
             username: document.getElementById('email').value,
             password: document.getElementById('password').value
         })
+    }).then(res => {
+        return res.json()
+    }).then(res => {
+        window.location.href = '/dashboard'
     })
-    .then(result => {
-        return result.json()
-    })
-    .then(res => {
-        return res
-    })
+    
     .catch(err => {
         console.log(err)
     })

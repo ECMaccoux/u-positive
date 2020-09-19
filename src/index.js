@@ -18,6 +18,26 @@ import Anxiety from "./questionaires/Anxiety"
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.state = {
+        myInfo: {}
+    }
+  }
+
+  componentDidMount() {
+      fetch('/api/user', {
+          method: 'GET'
+      })
+      .then(res => {
+          return res.json()
+      })
+      .then(res => {
+          this.setState({myInfo: res[0]})
+      })
+      .catch(err => {
+          console.log(err)
+          alert('An error occurred while loading the page.')
+      })
   }
 
   render() {
@@ -33,31 +53,31 @@ class Main extends React.Component {
           </Route>
           
           <Route path="/dashboard">
-              <TopNav isHome={true}></TopNav>
-              <ListView />
+              <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
+              <ListView myInfo={this.state.myInfo} />
           </Route>
-          <Route path="/dashboard/graph">
-              <TopNav isHome={true}></TopNav>
-              <GraphView />
+          <Route path="/dashboard/graph" >
+              <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
+              <GraphView myInfo={this.state.myInfo} />
           </Route>
           <Route path="/dashboard/journal">
               <TopNav isHome={true}></TopNav>
-              <JournalView />
+              <JournalView myInfo={this.state.myInfo} />
           </Route>
           <Route path="/dashboard/journal/new">
               <TopNav isHome={true}></TopNav>
-              <NewJournal />
+              <NewJournal myInfo={this.state.myInfo} />
           </Route>
 
           <Route path="/dashboard/anxiety">
               <TopNav isHome={true}></TopNav>
-              <Anxiety />
+              <Anxiety myInfo={this.state.myInfo} />
           </Route>
 
           <Route exact path="/">
             <div>
               <TopNav isLanding={true}></TopNav>
-              <LandingPage></LandingPage>
+              <LandingPage myInfo={this.state.myInfo}></LandingPage>
             </div>
           </Route>
         </Switch>

@@ -13,7 +13,7 @@ export default class TopNav extends React.Component {
         if(isLanding) {
             return (
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
-                        <Navbar.Brand href="#home">U+</Navbar.Brand>
+                        <Navbar.Brand href="#home">U Positive</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className='ml-auto'> 
@@ -27,7 +27,7 @@ export default class TopNav extends React.Component {
         else if(isHome) {
             return (
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
-                        <Navbar.Brand href="#home">U+</Navbar.Brand>
+                        <Navbar.Brand href="#home">U Positive</Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             
                             <Navbar.Collapse id="basic-navbar-nav">
@@ -44,7 +44,7 @@ export default class TopNav extends React.Component {
             return (
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
                     <Nav className="container-fluid" style={{paddingLeft: 0, paddingRight: 0}}>
-                        <Navbar.Brand href="#home">U+</Navbar.Brand>
+                        <Navbar.Brand href="#home">U Positive</Navbar.Brand>
                     </Nav>
                 </Navbar>
             );

@@ -14,7 +14,7 @@ export default class ListView extends React.Component {
                 <Container fluid="md">
                     <br></br>
                     <Row style={{paddingBottom: 10}}>
-                        <h2>Hello, [NAME]!</h2>
+                        <h2>Hello, {this.props.myInfo.firstName}!</h2>
                     </Row>
                     <Row>
                         <Col>

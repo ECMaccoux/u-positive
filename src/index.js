@@ -4,6 +4,7 @@ import FrontPage from "./FrontPage";
 import TopNav from "./Components/TopNav";
 import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
 import Register from "./authentication/Register";
+import Login from "./authentication/Login";
 
 class Main extends React.Component {
   constructor(props) {
@@ -16,6 +17,9 @@ class Main extends React.Component {
         <Switch>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/">
             <div>

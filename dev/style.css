@@ -6,3 +6,20 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.upos-dash-row {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.upos-dash-card {
+    background-color: #ddd;
+    text-align: center;
+    padding-bottom: 10px;
+    transition: 0.3s;
+}
+
+.upos-dash-card:hover {
+    background-color: #007bff;
+    color: white;
+}

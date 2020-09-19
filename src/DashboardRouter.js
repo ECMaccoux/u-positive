@@ -5,6 +5,7 @@ import GraphView from "./Dashboard/GraphView";
 import JournalView from "./Dashboard/JournalView";
 import Anxiety from "./questionaires/Anxiety";
 import NewJournal from "./Dashboard/NewJournal";
+import Depression from "./questionaires/Depression";
 
 export default function DashboardRouter(props) {
     let {path, url} = useRouteMatch();
@@ -23,7 +24,10 @@ export default function DashboardRouter(props) {
         </Route>
         <Route path={`${path}/journal/new`}>
             <NewJournal myInfo={props.myInfo} />
-          </Route>
+        </Route>
+        <Route path={`${path}/depression`}>
+            <Depression myInfo={props.myInfo} />
+        </Route>
 
         
     </Switch>

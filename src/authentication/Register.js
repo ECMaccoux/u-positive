@@ -29,7 +29,7 @@ export default class Register extends React.Component {
     }
 
     render() {
-        return <Container>
+        return <Container className='section'>
             <Row>
                 <Col>
                 <Form className='m-5'>

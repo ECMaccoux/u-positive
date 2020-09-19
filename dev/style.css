@@ -2,6 +2,10 @@
     flex-direction: row;
 }
 
+body {
+    background-color: rgb(18, 35, 88) !important;
+}
+
 .upos-nav-btn {
     margin-left: 5px;
     margin-right: 5px;
@@ -40,4 +44,11 @@
     border-radius: 5px;
     padding: 50px;
     margin: none;
+}
+
+.section {
+    padding: 10px;
+    margin: 15px;
+    background-color: white;
+    border-radius: 5px;
 }

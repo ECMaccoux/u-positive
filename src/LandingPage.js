@@ -7,17 +7,15 @@ export default class LandingPage extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <Container fluid="md" id="home">
-                    <Jumbotron fluid>
-                        <Container style={{textAlign: "center"}}>
-                            <h1>Welcome to U+ ("you-positive")</h1>
-                            <p>It's health and fitness tracking, made for real people.</p>
-                        </Container>
-                    </Jumbotron>
-                </Container>
+        return (<div>
+            <div className='landing-background'>
+                
             </div>
+            <div id='landing-card' className='text-center'>
+            <h1>U+</h1>
+            <p>Find yourself today.</p>
+        </div>
+        </div>
         );
     }
 }

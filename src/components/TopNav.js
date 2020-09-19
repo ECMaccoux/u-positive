@@ -13,32 +13,30 @@ export default class TopNav extends React.Component {
         if(isLanding) {
             return (
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
-                    <Nav className="container-fluid" style={{paddingLeft: 0, paddingRight: 0}}>
                         <Navbar.Brand href="#home">U+</Navbar.Brand>
-                        <Nav.Item>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
-                                <Link to={"/register"} className="btn btn-primary upos-nav-btn">Sign Up</Link>
-                                <Link to={"/login"} className="btn btn-primary upos-nav-btn">Log In</Link>
-                                <Link to={"/dashboard"} className="btn btn-primary upos-nav-btn">Test</Link>
+                                <Nav className='ml-auto'> 
+                                <Link to={"/login"} className="btn btn-outline-primary upos-nav-btn m-1">Log In</Link>
+                                <Link to={"/register"} className="btn btn-primary upos-nav-btn m-1">Sign Up</Link>
+                                </Nav>
                             </Navbar.Collapse>
-                        </Nav.Item>
-                    </Nav>
                 </Navbar>
             );
         }
         else if(isHome) {
             return (
                 <Navbar bg="light" sticky="top" expand="md" className="upos-nav">
-                    <Nav className="container-fluid" style={{paddingLeft: 0, paddingRight: 0}}>
                         <Navbar.Brand href="#home">U+</Navbar.Brand>
-                        <Nav.Item>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            
                             <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className='ml-auto'>
                                 <Link to={"/"} className="btn btn-primary upos-nav-btn">Logout</Link>
+                                </Nav>
                             </Navbar.Collapse>
-                        </Nav.Item>
-                    </Nav>
+
+
                 </Navbar>
             );
         }

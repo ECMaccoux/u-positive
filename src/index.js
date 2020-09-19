@@ -52,7 +52,7 @@ class Main extends React.Component {
               <Login />
           </Route>
           
-          <Route path="/dashboard">
+          <Route exact path="/dashboard">
               <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
               <ListView myInfo={this.state.myInfo} />
           </Route>
@@ -60,7 +60,7 @@ class Main extends React.Component {
               <TopNav isHome={true} myInfo={this.state.myInfo}></TopNav>
               <GraphView myInfo={this.state.myInfo} />
           </Route>
-          <Route path="/dashboard/journal">
+          <Route exact path="/dashboard/journal">
               <TopNav isHome={true}></TopNav>
               <JournalView myInfo={this.state.myInfo} />
           </Route>

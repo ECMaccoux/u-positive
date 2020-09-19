@@ -31,8 +31,11 @@ export default class Register extends React.Component {
     render() {
         return <Container className='section'>
             <Row>
-                <Col>
+                <Col md='6'>
+                <h1 className='ml-5 mt-3'>Register for U-Positive</h1>
+                <p className='ml-5 mt-3'>Find Yourself.</p>
                 <Form className='m-5'>
+                
                     <Form.Group controlId='email'>
                         <Form.Label>Email Address</Form.Label>
                         <Form.Control type='email'></Form.Control>
@@ -61,9 +64,9 @@ export default class Register extends React.Component {
                         <Form.Control></Form.Control>
                     </Form.Group>
                     </Form.Row>
-                    <Form.Group controlId='tac'>
+                    <Form.Group controlId='tac' className='d-flex flex-reverse'>
+                    <Form.Check></Form.Check>
                         <Form.Label>Agree to Terms and Conditions</Form.Label>
-                        <Form.Control type='checkbox'></Form.Control>
                     </Form.Group>
                     <Button onClick={e => {submitData()}}>Create Account</Button>
                     <Link to={"/"} className="btn">Cancel</Link>   

@@ -43,7 +43,7 @@ passport.use(
 App.use(
     cookieSession({
       maxAge: 24 * 60 * 60 * 1000,
-      keys: [keys.settings.ENCRYPTION],
+      keys: [keys.settings.ENCRYPTION]
     })
   );
 
@@ -102,6 +102,12 @@ App.post("/register", (req, res) => {
     });
   }
 });
+
+App.get('/logout', function (req, res) {
+    req.logOut()
+    res.redirect('/')
+    
+})
 
 App.get("/", (req, res) => {
   //console.log(CURR_PATH + '/img/' + req.params[0])

@@ -11,7 +11,7 @@ export default class ListView extends React.Component {
     render() {
         return (
             <div>
-                <Container fluid="md">
+                <Container fluid="md" className='section'>
                     <br></br>
                     <Row style={{paddingBottom: 10}}>
                         <h2>Hello, {this.props.myInfo.firstName}!</h2>

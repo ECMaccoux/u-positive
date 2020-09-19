@@ -29,7 +29,7 @@ export default class Login extends React.Component {
     }
 
     render() {
-        return <Container>
+        return <Container className='section'>
             <Row>
                 <Col>
                 <h3>U-Positive Login</h3>

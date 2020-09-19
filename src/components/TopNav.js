@@ -20,6 +20,7 @@ export default class TopNav extends React.Component {
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Link to={"/register"} className="btn btn-primary upos-nav-btn">Sign Up</Link>
                                 <Link to={"/login"} className="btn btn-primary upos-nav-btn">Log In</Link>
+                                <Link to={"/dashboard"} className="btn btn-primary upos-nav-btn">Test</Link>
                             </Navbar.Collapse>
                         </Nav.Item>
                     </Nav>

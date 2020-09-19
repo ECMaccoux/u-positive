@@ -1,5 +1,5 @@
 .upos-nav {
-    padding-right: 0px;
+    flex-direction: row;
 }
 
 .upos-nav-btn {

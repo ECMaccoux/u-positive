@@ -30,6 +30,71 @@ import {
     },
   ];
 
+function GenerateAssessment() {
+    const nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+    const q1 = [];
+    const q2 = [];
+    const q3 = [];
+
+    for(const [index, value] of nums.entries()) {
+        q1.push(<Form.Check key={index} inline="true" name="anxietyQ1-radio" label={value} type="radio" id={"anxietyQ1-radio-" + value}></Form.Check>)
+        q2.push(<Form.Check key={index} inline="true" name="anxietyQ2-radio" label={value} type="radio" id={"anxietyQ2-radio-" + value}></Form.Check>)
+        q3.push(<Form.Check key={index} inline="true" name="anxietyQ3-radio" label={value} type="radio" id={"anxietyQ3-radio-" + value}></Form.Check>)
+    }
+
+    return <Form className="m-5">
+        <Form.Group controlId="anxietyQ1">
+            <Form.Label>How has your anxiety been today?</Form.Label>
+            <Form.Row>
+                <Col md={3}>
+                    <Form.Text className="text-muted float-right">Minimal or not at all existent</Form.Text>
+                </Col>
+                <Col md={6}> 
+                    <div className="text-center">
+                        {q1}
+                    </div>
+                </Col>
+                <Col md={3}>
+                    <Form.Text className="text-muted float-left">Overwhelming</Form.Text>
+                </Col>
+            </Form.Row>
+        </Form.Group>
+        <Form.Group controlId="anxietyQ2">
+            <Form.Label>How difficult has it been to relax today?</Form.Label>
+            <Form.Row>
+                <Col md={3}>
+                    <Form.Text className="text-muted float-right">Extremely easy</Form.Text>
+                </Col>
+                <Col md={6}> 
+                    <div className="text-center">
+                        {q2}
+                    </div>
+                </Col>
+                <Col md={3}>
+                    <Form.Text className="text-muted float-left">Extremely difficult</Form.Text>
+                </Col>
+            </Form.Row>
+        </Form.Group>
+        <Form.Group controlId="anxietyQ3">
+            <Form.Label>How worried have you been about the things that make you anxious?</Form.Label>
+            <Form.Row>
+                <Col md={3}>
+                    <Form.Text className="text-muted float-right">Minimal or not at all existent</Form.Text>
+                </Col>
+                <Col md={6}> 
+                    <div className="text-center">
+                        {q3}
+                    </div>
+                </Col>
+                <Col md={3}>
+                    <Form.Text className="text-muted float-left">Overwhelming</Form.Text>
+                </Col>
+            </Form.Row>
+        </Form.Group>
+        <Button variant="primary" type="submit">Submit</Button>
+    </Form>
+}
+
 export default class Anxiety extends React.Component {
     constructor(props) {
         super(props)
@@ -68,6 +133,15 @@ export default class Anxiety extends React.Component {
                                 <Area type="monotone" dataKey="uv" stroke="#84aed8" fill="#84aed8" />
                             </AreaChart>
                         </ResponsiveContainer>
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <h4>Daily Assessment</h4>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <GenerateAssessment />
+                        </Col>
                     </Row>
                 </Container>
             </div>

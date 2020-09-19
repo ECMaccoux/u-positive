@@ -12,6 +12,7 @@ class Main extends React.Component {
         return (
         <div>
             <TopNav></TopNav>
+            <FrontPage></FrontPage>
         </div>)
     }
 }

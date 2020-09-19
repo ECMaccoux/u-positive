@@ -104,10 +104,10 @@ App.post("/register", (req, res) => {
 });
 
 App.get('/logout', function (req, res) {
-    req.logOut()
-    res.redirect('/')
-    
+    req.logOut();
+    res.redirect('/');
 })
+
 
 App.get("/", (req, res) => {
   //console.log(CURR_PATH + '/img/' + req.params[0])

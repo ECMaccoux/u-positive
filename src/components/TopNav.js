@@ -2,6 +2,10 @@ import React from 'react'
 import { Navbar, Button, Nav, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+function refreshPage() {
+    window.location.href = "/logout";
+  }
+
 export default class TopNav extends React.Component {
     constructor(props) {
         super(props)
@@ -17,11 +21,10 @@ export default class TopNav extends React.Component {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className='ml-auto'>
-                                <Link to={"/logout"} className="btn btn-primary upos-nav-btn">Logout</Link>
+                                <Link to={"/dashboard"} className="btn btn-primary upos-nav-btn">Dashboard</Link>
+                                <Link to={"/logout"} onClick={refreshPage} className="btn btn-primary upos-nav-btn">Logout</Link>
                                 </Nav>
                             </Navbar.Collapse>
-
-
                 </Navbar>
             );
         }

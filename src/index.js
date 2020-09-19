@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import FrontPage from "./FrontPage";
+import LandingPage from "./LandingPage";
 import TopNav from "./Components/TopNav";
-import { Router, Switch, Route, BrowserRouter, withRouter } from "react-router-dom";
+import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
 import Register from "./authentication/Register";
+import Dashboard from "./Dashboard"
 
 class Main extends React.Component {
   constructor(props) {
@@ -15,12 +16,17 @@ class Main extends React.Component {
       <BrowserRouter history={history}>
         <Switch>
           <Route path="/register">
+              <TopNav isLanding={false}></TopNav>
               <Register />
+          </Route>
+          <Route path="/dashboard">
+              <TopNav isHome={true}></TopNav>
+              <Dashboard />
           </Route>
           <Route exact path="/">
             <div>
-              <TopNav></TopNav>
-              <FrontPage></FrontPage>
+              <TopNav isLanding={true}></TopNav>
+              <LandingPage></LandingPage>
             </div>
           </Route>
         </Switch>

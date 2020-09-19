@@ -11,6 +11,9 @@ import Login from "./authentication/Login";
 import ListView from "./Dashboard/ListView"
 import GraphView from "./Dashboard/GraphView"
 import JournalView from "./Dashboard/JournalView"
+import NewJournal from "./Dashboard/NewJournal"
+
+import Anxiety from "./questionaires/Anxiety"
 
 class Main extends React.Component {
   constructor(props) {
@@ -40,6 +43,15 @@ class Main extends React.Component {
           <Route path="/dashboard/journal">
               <TopNav isHome={true}></TopNav>
               <JournalView />
+          </Route>
+          <Route path="/dashboard/journal/new">
+              <TopNav isHome={true}></TopNav>
+              <NewJournal />
+          </Route>
+
+          <Route path="/dashboard/anxiety">
+              <TopNav isHome={true}></TopNav>
+              <Anxiety />
           </Route>
 
           <Route exact path="/">

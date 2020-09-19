@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import FrontPage from "./FrontPage";
+import LandingPage from "./LandingPage";
 import TopNav from "./Components/TopNav";
 import { Router, Switch, Route, BrowserRouter } from "react-router-dom";
 import Register from "./authentication/Register";
 import Login from "./authentication/Login";
+import Dashboard from "./Dashboard"
 
 class Main extends React.Component {
   constructor(props) {
@@ -13,18 +14,23 @@ class Main extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <Switch>
           <Route path="/register">
-            <Register />
+              <TopNav isLanding={false}></TopNav>
+              <Register />
+          </Route>
+          <Route path="/dashboard">
+              <TopNav isHome={true}></TopNav>
+              <Dashboard />
           </Route>
           <Route path="/login">
-            <Login />
+              <Login />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <div>
-              <TopNav></TopNav>
-              <FrontPage></FrontPage>
+              <TopNav isLanding={true}></TopNav>
+              <LandingPage></LandingPage>
             </div>
           </Route>
         </Switch>

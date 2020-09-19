@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Navbar, Nav, Row, Col, Container, Jumbotron } from "react-bootstrap";
 
-export default class FrontPage extends React.Component {
+export default class LandingPage extends React.Component {
     constructor(props) {
         super(props);
     }

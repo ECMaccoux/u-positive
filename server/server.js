@@ -115,7 +115,17 @@ App.get("/*?", (req, res) => {
   res.sendFile(PATH + req.params[0]);
 });
 
+const dashboardRouter = express.Router();
 
+App.use(
+    "/dashboard",
+    dashboardRouter
+);
+
+dashboardRouter.get("/*?", (req, res) => {
+    //console.log(CURR_PATH + '/img/' + req.params[0])
+    res.sendFile(PATH + "index.html");
+  });
 
 App.listen(3000, () => {
   console.log("Running on port 3000!");

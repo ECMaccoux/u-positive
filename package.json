@@ -1,0 +1,20 @@
+{
+  "name": "u-positive",
+  "version": "1.0.0",
+  "description": "U+ (pronounced \"U-positive\"), a web-based health journaling app made by Celine Lu, Eric Maccoux, Jen Mann, and Ryan Werner for HackMIT 2020.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ECMaccoux/u-positive.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ECMaccoux/u-positive/issues"
+  },
+  "homepage": "https://github.com/ECMaccoux/u-positive#readme"
+}

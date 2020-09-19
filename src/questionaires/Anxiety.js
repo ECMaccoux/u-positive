@@ -103,8 +103,7 @@ export default class Anxiety extends React.Component {
     render() {
         return (
             <div>
-                <br></br>
-                <Container fluid="md">
+                <Container fluid="md" className="section">
                     <Row>
                         <Col>
                             <Link to={"/dashboard"} className="btn btn-outline-primary upos-nav-btn">Back</Link>
@@ -116,7 +115,7 @@ export default class Anxiety extends React.Component {
                     </Row>
                     <hr></hr>
                     <Row>
-                        <h2>Anxiety</h2>
+                        <h2 style={{paddingLeft: 10}}>Anxiety</h2>
                     </Row>
                     <Row>
                         <ResponsiveContainer width="100%" height={400}>
@@ -136,7 +135,7 @@ export default class Anxiety extends React.Component {
                     </Row>
                     <br></br>
                     <Row>
-                        <h4>Daily Assessment</h4>
+                        <h4 style={{paddingLeft: 10}}>Daily Assessment</h4>
                     </Row>
                     <Row>
                         <Col>

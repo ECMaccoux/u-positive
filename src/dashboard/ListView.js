@@ -73,9 +73,11 @@ export default class ListView extends React.Component {
                     </Row>
                     <Row className="upos-dash-row">
                         <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>Water</h5></Card.Body>
-                            </Card>
+                            <Link to={"/dashboard/water"} style={{ textDecoration: 'none', color: "black"}}>
+                                <Card className="upos-dash-card">
+                                    <Card.Body><h5>Water</h5></Card.Body>
+                                </Card>
+                            </Link>
                         </Col>
                         <Col>
                             <Card className="upos-dash-card">

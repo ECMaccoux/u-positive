@@ -75,13 +75,13 @@ export default class Water extends React.Component {
                     <Row>
                         <ResponsiveContainer width="100%" height={400}>
                             <AreaChart
-                                data={data}
+                                data={this.props.water}
                                 margin={{
                                 top: 25, right: 30, left: 0, bottom: 0,
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="dateSubmitted" />
                                 <YAxis />
                                 <Tooltip />
                                 <Area type="monotone" dataKey="uv" stroke="#84aed8" fill="#84aed8" />

@@ -30,7 +30,7 @@ export default function DashboardRouter(props) {
             <Depression myInfo={props.myInfo} depressionScores={props.depressionScores}/>
         </Route>
         <Route path={`${path}/water`}>
-            <Water myInfo={props.myInfo} />
+            <Water myInfo={props.myInfo} water={props.water} />
         </Route>
 
         

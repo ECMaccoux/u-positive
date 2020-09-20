@@ -35,8 +35,8 @@ function createWater(id, data) {
 
 waterRouter.get('/', (req, res) => {
     getWaterByUserID(req.user.userID)
-    .then(res => {
-        res.json(res)
+    .then(result => {
+        res.json(result)
     })
     .catch(err => {
         console.log(err)
@@ -44,7 +44,7 @@ waterRouter.get('/', (req, res) => {
     })
 })
 
-waterRouter.post('/', (res, res) => {
+waterRouter.post('/', (req, res) => {
     createWater(req.user.userID, req.body)
     .then(result => {
         res.json(result)

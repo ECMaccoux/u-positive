@@ -57,10 +57,24 @@ function loadAnxietyScores() {
                 resolve(res)
             })
             .catch(err => {
-                alert('Something went wrong'),
+                //alert('Something went wrong'),
                 reject(err)
             })
     })
 }
 
-module.exports = {loadDepressionScores, loadUser, loadAnxietyScores, loadJournals}
+function loadWater() {
+    return new Promise((resolve, reject) => {
+        fetch('/api/water')
+        .then(res => res.json())
+        .then(res => {
+            resolve(res)
+        })
+        .catch(err => {
+            console.log(err)
+            reject(err)
+        })
+    })
+}
+
+module.exports = {loadDepressionScores, loadUser, loadAnxietyScores, loadJournals, loadWater}

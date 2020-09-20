@@ -18,7 +18,7 @@ export default function DashboardRouter(props) {
             <GraphView myInfo={props.myInfo} />
         </Route>
         <Route exact path={`${path}/journal`}>
-            <JournalView myInfo={props.myInfo} />
+            <JournalView myInfo={props.myInfo} journals={props.journals} />
         </Route>
         <Route path={`${path}/anxiety`}>
             <Anxiety myInfo={props.myInfo} />

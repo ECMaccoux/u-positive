@@ -10,8 +10,28 @@ function GenerateForm() {
         <Form.Group controlId="journal-body">
             <Form.Control as="textarea" rows="10"></Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit" className="float-right">Submit</Button>
+        <Button variant="primary" type="button" className="float-right" onClick={e => {submit()}}>Submit</Button>
     </Form>
+}
+
+function submit() {
+    fetch('/api/journal', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            journalEntry: document.getElementById('journal-body').value,
+            title: document.getElementById('journal-title').value
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        console.log('success')
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 export default class NewJournal extends React.Component {

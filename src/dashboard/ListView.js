@@ -21,6 +21,10 @@ export default class ListView extends React.Component {
                         </Col>
                     </Row>
                     <Row>
+                        <Col>
+                        <p className='text-center'>Welcome to U Positive, a way to keep track of yourself. Go ahead and log a journal, or take one of our surveys. All information that you enter on the site is only viewable by you and site administrators.</p></Col>
+                    </Row>
+                    <Row> 
                         {/*<Col>
                             <Link to={"/dashboard"} className="btn btn-outline-primary upos-nav-btn active">List View</Link>
                             <Link to={"/dashboard/graph"} className="btn btn-outline-primary upos-nav-btn">Graph View</Link>

@@ -9,7 +9,7 @@ function loadDepressionScores() {
                 resolve(res)
             })
             .catch(err => {
-                alert('Something went wrong'),
+                //alert('Something went wrong'),
                 reject(err)
             })
     })
@@ -27,10 +27,23 @@ function loadUser() {
                 }
             })
             .catch((err) => {
-                alert("An error occurred while loading the page.");
+                //alert("An error occurred while loading the page.");
                 reject(err);
             });
     })
 }
 
-module.exports = {loadDepressionScores, loadUser}
+function loadJournals() {
+    return new Promise((resolve, reject) => {
+        fetch('/api/journal')
+        .then(res => res.json())
+        .then(res => {
+            resolve(res)
+        })
+        .catch(err => {
+            reject(err)
+        })
+    })
+}
+
+module.exports = {loadDepressionScores, loadUser, loadJournals}

@@ -6,7 +6,7 @@ import TopNav from "./Components/TopNav";
 import Register from "./authentication/Register";
 import Login from "./authentication/Login";
 import DashboardRouter from "./DashboardRouter";
-import {loadDepressionScores, loadUser} from "./loadFunctions"
+import {loadDepressionScores, loadUser, loadJournals} from "./loadFunctions"
 
 
 class Main extends React.Component {
@@ -14,13 +14,14 @@ class Main extends React.Component {
     super(props);
     this.state = {
       myInfo: {},
-      depressionScores: {}
+      depressionScores: {},
+      journals: {}
     };
   }
 
   componentDidMount() {
-      Promise.all([loadUser(), loadDepressionScores()]).then((reso) => {
-        this.setState({ myInfo: reso[0], depressionScores: reso[1]});
+      Promise.all([loadUser(), loadDepressionScores(), loadJournals()]).then((reso) => {
+        this.setState({ myInfo: reso[0], depressionScores: reso[1], journals: reso[2]});
       });
   }
 
@@ -36,7 +37,7 @@ class Main extends React.Component {
             <Login />
           </Route>
           <Route path="/dashboard">
-            <DashboardRouter myInfo={this.state.myInfo} depressionScores={this.state.depressionScores}/>
+            <DashboardRouter myInfo={this.state.myInfo} depressionScores={this.state.depressionScores} journals={this.state.journals}/>
           </Route>
           <Route exact path="/">
             <LandingPage myInfo={this.state.myInfo}></LandingPage>

@@ -7,44 +7,44 @@ import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
   } from 'recharts';
 
-  const data = [
-    {
-      name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-    },
-    {
-      name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-    },
-    {
-      name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-    },
-    {
-      name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-    },
-    {
-      name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-    },
-    {
-      name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-    },
-    {
-      name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-    },
-  ];
+function submitForm() {
+    var numCups = document.getElementById("numCups").value;
+    if(isNaN(numCups) || numCups == null) {
+        alert("ERROR: Form not filled out with a valid number");
+    }
+    else {
+        fetch('/api/water', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                waterQuantity: numCups
+            })
+        })
+        alert("Assessment submitted successfully!");
+    }
+}
 
 function GenerateAssessment() {
-    return <Form className="m-5">
+    return <Form className="m-5" onSubmit={submitForm}>
         <Form.Group controlId="waterQ1">
             <Row>
                 <Col>
                     <Form.Label>How many cups of water did you drink yesterday?</Form.Label>
                 </Col>
                 <Col>
-                    <NumericInput className="form-control"/>
+                    <NumericInput className="form-control" id="numCups"/>
                 </Col>
             </Row>
         </Form.Group>
         <Button variant="primary" type="submit">Submit</Button>
     </Form>
+}
+
+function formatXAxis(tickItem) {
+    return new Date(tickItem).toDateString();
 }
 
 export default class Water extends React.Component {
@@ -71,7 +71,6 @@ export default class Water extends React.Component {
                     <Row>
                         <h2 style={{paddingLeft: 10}}>Water</h2>
                     </Row>
-                    <Row><h4 style={{paddingLeft: 10}}>You drank [AMOUNT] cups of water yesterday.  Good job!</h4></Row>
                     <Row>
                         <ResponsiveContainer width="100%" height={400}>
                             <AreaChart
@@ -81,10 +80,10 @@ export default class Water extends React.Component {
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="dateSubmitted" />
+                                <XAxis dataKey="dateSubmitted" tickFormatter={formatXAxis}/>
                                 <YAxis />
                                 <Tooltip />
-                                <Area type="monotone" dataKey="uv" stroke="#84aed8" fill="#84aed8" />
+                                <Area type="monotone" dataKey="waterQuantity" stroke="#84aed8" fill="#84aed8" />
                             </AreaChart>
                         </ResponsiveContainer>
                     </Row>

@@ -32,6 +32,7 @@ function submit() {
     .catch(err => {
         console.log(err)
     })
+    alert("Journal submitted successfully!");
 }
 
 export default class NewJournal extends React.Component {

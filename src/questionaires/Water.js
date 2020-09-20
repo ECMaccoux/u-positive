@@ -23,6 +23,7 @@ function submitForm() {
                 waterQuantity: numCups
             })
         })
+        alert("Assessment submitted successfully!");
     }
 }
 

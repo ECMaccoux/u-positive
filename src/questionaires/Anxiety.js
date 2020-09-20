@@ -43,6 +43,7 @@ function submitForm() {
                 q3Answer: q3Val
             })
         })
+        alert("Assessment submitted successfully!");
     }
 }
 

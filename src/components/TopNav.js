@@ -21,7 +21,7 @@ export default class TopNav extends React.Component {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className='ml-auto'>
-                                <Link to={"/dashboard"} className="btn btn-primary upos-nav-btn">Dashboard</Link>
+                                <Link to={"/dashboard"} className="btn btn-outline-primary upos-nav-btn">Dashboard</Link>
                                 <Link to={"/logout"} onClick={refreshPage} className="btn btn-primary upos-nav-btn">Logout</Link>
                                 </Nav>
                             </Navbar.Collapse>

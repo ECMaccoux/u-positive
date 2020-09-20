@@ -20,6 +20,7 @@ export default class ListView extends React.Component {
                             <Link to={"/dashboard/graph"} className="btn btn-outline-primary upos-nav-btn">Graph View</Link>
                         </Col>
                         <Col>
+                            <Link to={"/dashboard/journal/new"} className="btn btn-primary upos-nav-btn float-right">New Journal</Link>
                             <Link to={"/dashboard/journal"} className="btn btn-outline-primary upos-nav-btn float-right">All Journals</Link>
                         </Col>
                     </Row>
@@ -40,35 +41,11 @@ export default class ListView extends React.Component {
                             </Link>
                         </Col>
                         <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>Fitness</h5></Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row className="upos-dash-row">
-                        <Col>
                             <Link to={"/dashboard/depression"} style={{ textDecoration: 'none', color: "black"}}>
                                 <Card className="upos-dash-card">
                                     <Card.Body><h5>Depression</h5></Card.Body>
                                 </Card>
                             </Link>
-                        </Col>
-                        <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>Partner Relationships</h5></Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row className="upos-dash-row">
-                        <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>Diet</h5></Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>School</h5></Card.Body>
-                            </Card>
                         </Col>
                     </Row>
                     <Row className="upos-dash-row">
@@ -81,19 +58,7 @@ export default class ListView extends React.Component {
                         </Col>
                         <Col>
                             <Card className="upos-dash-card">
-                                <Card.Body><h5>Work</h5></Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row className="upos-dash-row">
-                        <Col>
-                            <Card className="upos-dash-card">
                                 <Card.Body><h5>Sleep</h5></Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>Period Tracker</h5></Card.Body>
                             </Card>
                         </Col>
                     </Row>

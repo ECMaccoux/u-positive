@@ -21,7 +21,7 @@ export default function DashboardRouter(props) {
             <JournalView myInfo={props.myInfo} journals={props.journals} />
         </Route>
         <Route path={`${path}/anxiety`}>
-            <Anxiety myInfo={props.myInfo} />
+            <Anxiety myInfo={props.myInfo} anxietyScores={props.anxietyScores}/>
         </Route>
         <Route path={`${path}/journal/new`}>
             <NewJournal myInfo={props.myInfo} />

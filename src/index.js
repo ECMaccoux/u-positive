@@ -6,7 +6,7 @@ import TopNav from "./Components/TopNav";
 import Register from "./authentication/Register";
 import Login from "./authentication/Login";
 import DashboardRouter from "./DashboardRouter";
-import {loadDepressionScores, loadUser, loadAnxietyScores} from "./loadFunctions"
+import {loadDepressionScores, loadUser, loadAnxietyScores, loadJournals} from "./loadFunctions"
 
 
 class Main extends React.Component {
@@ -15,13 +15,14 @@ class Main extends React.Component {
     this.state = {
       myInfo: {},
       depressionScores: {},
-      anxietyScores: {}
+      anxietyScores: {},
+      journals: {}
     };
   }
 
   componentDidMount() {
-      Promise.all([loadUser(), loadDepressionScores(), loadAnxietyScores()]).then((reso) => {
-        this.setState({ myInfo: reso[0], depressionScores: reso[1], anxietyScores: reso[2]});
+      Promise.all([loadUser(), loadDepressionScores(), loadAnxietyScores(), loadJournals()]).then((reso) => {
+        this.setState({ myInfo: reso[0], depressionScores: reso[1], anxietyScores: reso[2], journals: reso[3]});
       });
   }
 
@@ -37,7 +38,7 @@ class Main extends React.Component {
             <Login />
           </Route>
           <Route path="/dashboard">
-            <DashboardRouter myInfo={this.state.myInfo} depressionScores={this.state.depressionScores} anxietyScores={this.state.anxietyScores}/>
+            <DashboardRouter myInfo={this.state.myInfo} depressionScores={this.state.depressionScores} anxietyScores={this.state.anxietyScores} journals={this.state.journals}/>
           </Route>
           <Route exact path="/">
             <LandingPage myInfo={this.state.myInfo}></LandingPage>

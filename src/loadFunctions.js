@@ -57,7 +57,7 @@ function loadAnxietyScores() {
                 resolve(res)
             })
             .catch(err => {
-                alert('Something went wrong'),
+                //alert('Something went wrong'),
                 reject(err)
             })
     })

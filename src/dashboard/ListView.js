@@ -22,7 +22,7 @@ export default class ListView extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                        <p className='text-center'>Welcome to U Positive, a way to keep track of yourself. Go ahead and log a journal, or take one of our surveys. All information that you enter on the site is only viewable by you and site administrators.</p></Col>
+                        <p className='text-center'>Welcome to U+ (pronounced "you-positive"), a way to keep track of yourself. Go ahead and log a journal, or take one of our surveys. All information that you enter on the site is only viewable by you and site administrators.</p></Col>
                     </Row>
                     <Row> 
                         {/*<Col>

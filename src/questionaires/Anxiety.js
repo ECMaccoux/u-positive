@@ -111,6 +111,10 @@ function GenerateAssessment() {
     </Form>
 }
 
+function formatXAxis(tickItem) {
+    return new Date(tickItem).toDateString();
+}
+
 export default class Anxiety extends React.Component {
     constructor(props) {
         super(props)
@@ -142,7 +146,7 @@ export default class Anxiety extends React.Component {
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="dateSubmitted" />
+                                <XAxis dataKey="dateSubmitted" tickFormatter={formatXAxis}/>
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />

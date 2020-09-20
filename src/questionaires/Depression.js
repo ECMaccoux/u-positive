@@ -3,8 +3,9 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
+
 
   const data = [
     {
@@ -127,18 +128,20 @@ export default class Depression extends React.Component {
                     </Row>
                     <Row>
                         <ResponsiveContainer width="100%" height={400}>
-                            <AreaChart
-                                data={data}
-                                margin={{
-                                top: 25, right: 30, left: 0, bottom: 0,
-                                }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Area type="monotone" dataKey="uv" stroke="#84aed8" fill="#84aed8" />
-                            </AreaChart>
+                        <LineChart
+                            data={data}
+                            margin={{
+                            top: 5, right: 30, left: 20, bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+                            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                        </LineChart>
                         </ResponsiveContainer>
                     </Row>
                     <br></br>

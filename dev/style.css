@@ -19,7 +19,7 @@ body {
 .upos-dash-card {
     background-color: #ddd;
     text-align: center;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
     transition: 0.3s;
 }
 

@@ -129,6 +129,18 @@ dashboardRouter.use((req, res, next) => {
     }
 })
 
+
+dashboardRouter.get("/index.js", (req, res) => {
+    //console.log(CURR_PATH + '/img/' + req.params[0])
+    res.sendFile(PATH + "index.js");
+  });
+
+  dashboardRouter.get("/style.css", (req, res) => {
+    //console.log(CURR_PATH + '/img/' + req.params[0])
+    res.sendFile(PATH + "style.css");
+  });
+
+
 dashboardRouter.get("/*?", (req, res) => {
     //console.log(CURR_PATH + '/img/' + req.params[0])
     res.sendFile(PATH + "index.html");

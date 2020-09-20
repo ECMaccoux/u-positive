@@ -23,7 +23,7 @@ function setOrModifyDepressionScores(id, data) {
                 }
             })
         } else {
-            db.query({sql: 'INSERT INTO userDepression (q1Answer, q2Answer, q3Answer, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?)', values: [data.q1Answer, data.q2Answer, data.q3Answer, id, today, 2]}, function(err, rows) {
+            db.query({sql: 'INSERT INTO userDepression (q1Answer, q2Answer, q3Answer, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?, ?)', values: [data.q1Answer, data.q2Answer, data.q3Answer, today, id, 2]}, function(err, rows) {
                 if (err) reject(err);
                 else {
                     resolve(rows)
@@ -50,7 +50,7 @@ depressionRouter.get('/', (req, res) => {
 
 depressionRouter.post('/', (req, res) => {
     const data = req.body;
-    setOrModifyDepressionScores(req.user.id, data)
+    setOrModifyDepressionScores(req.user.userID, data)
     .then(results => {
         res.json(results).status(200)
     })

@@ -5,7 +5,7 @@ function loadDepressionScores() {
                 return res.json()
             })
             .then(res => {
-                res.sort((a,b) => new Date(a.dateSubmitted).getTime() > new Date(b.dateSubmitted).getTime() ? 1 : -1),
+                res.sort((a,b) => new Date(a.dateSubmitted).getTime() >= new Date(b.dateSubmitted).getTime() ? 1 : -1),
                 resolve(res)
             })
             .catch(err => {

@@ -7,17 +7,44 @@ import {
   } from 'recharts';
 
 function submitForm() {
-    fetch('/api/depression', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            q1: 'yourValue',
-            secondParam: 'yourOtherValue',
+    var q1Val = -1;
+    var q2Val = -1;
+    var q3Val = -1;
+
+    for(let i = 0; i < document.getElementsByName("depressionQ1-radio").length; i++) {
+        if(document.getElementsByName("depressionQ1-radio")[i].checked) {
+            q1Val = i;
+        }
+    }
+    for(let i = 0; i < document.getElementsByName("depressionQ2-radio").length; i++) {
+        if(document.getElementsByName("depressionQ2-radio")[i].checked) {
+            q2Val = i;
+        }
+    }
+    for(let i = 0; i < document.getElementsByName("depressionQ3-radio").length; i++) {
+        if(document.getElementsByName("depressionQ3-radio")[i].checked) {
+            q3Val = i;
+        }
+    }
+
+    if(q1Val == -1 || q2Val == -1 || q3Val == -1) {
+        alert("ERROR: Form not completely filled out");
+    }
+    else {
+        fetch('/api/depression', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                q1Answer: q1Val,
+                q2Answer: q2Val,
+                q3Answer: q3Val
+            })
         })
-    })
+    }
+    
 }
 
 function GenerateAssessment() {
@@ -26,10 +53,10 @@ function GenerateAssessment() {
     const q2 = [];
     const q3 = [];
 
-    for(const [index, value] of nums.entries()) {
-        q1.push(<Form.Check key={index} inline="true" name="depressionQ1-radio" label={value} type="radio" id={"depressionQ1-radio-" + value}></Form.Check>)
-        q2.push(<Form.Check key={index} inline="true" name="depressionQ2-radio" label={value} type="radio" id={"depressionQ2-radio-" + value}></Form.Check>)
-        q3.push(<Form.Check key={index} inline="true" name="depressionQ3-radio" label={value} type="radio" id={"depressionQ3-radio-" + value}></Form.Check>)
+    for(let i = 0; i < 9; i++) {
+        q1.push(<Form.Check key={i} value={i} inline="true" name="depressionQ1-radio" label={i} type="radio" id={"depressionQ1-radio-" + i}></Form.Check>)
+        q2.push(<Form.Check key={i} value={i} inline="true" name="depressionQ2-radio" label={i} type="radio" id={"depressionQ2-radio-" + i}></Form.Check>)
+        q3.push(<Form.Check key={i} value={i} inline="true" name="depressionQ3-radio" label={i} type="radio" id={"depressionQ3-radio-" + i}></Form.Check>)
     }
 
     return <Form className="m-5" onSubmit={submitForm}>
@@ -81,13 +108,6 @@ function GenerateAssessment() {
                 </Col>
             </Form.Row>
         </Form.Group>
-        <Form.Group controlId="depressionQ4">
-            <Form.Label>Have you been having any thoughts on self-harm?</Form.Label>
-            <Form.Row>
-                <Form.Check inline="true" type="radio" name="depressionQ4-radio" label="Yes" id="depressionQ4-radio-yes"></Form.Check>
-                <Form.Check inline="true" type="radio" name="depressionQ4-radio" label="No" id="depressionQ4-radio-no"></Form.Check>
-            </Form.Row>
-        </Form.Group>
         <Button variant="primary" type="submit">Submit</Button>
     </Form>
 }
@@ -95,6 +115,12 @@ function GenerateAssessment() {
 export default class Depression extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state={
+            q1Radio: {},
+            q2Radio: {},
+            q3Radio: {}
+        }
     }
 
     render() {

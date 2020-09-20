@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Card, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export default class ListView extends React.Component {
@@ -10,56 +10,47 @@ export default class ListView extends React.Component {
     render() {
         return (
             <div>
-                <Container fluid="md" className='section'>
+                <Container fluid="sm" className='section'>
                     <Row style={{paddingBottom: 10}}>
-                        <h2 style={{paddingLeft: 10}}>Hello, {this.props.myInfo.firstName}!</h2>
-                    </Row>
-                    <Row>
                         <Col>
-                            <Link to={"/dashboard"} className="btn btn-outline-primary upos-nav-btn active">List View</Link>
-                            <Link to={"/dashboard/graph"} className="btn btn-outline-primary upos-nav-btn">Graph View</Link>
+                            <h2 style={{paddingLeft: 10}}>Hello, {this.props.myInfo.firstName}!</h2>
                         </Col>
                         <Col>
                             <Link to={"/dashboard/journal/new"} className="btn btn-primary upos-nav-btn float-right">New Journal</Link>
                             <Link to={"/dashboard/journal"} className="btn btn-outline-primary upos-nav-btn float-right">All Journals</Link>
                         </Col>
                     </Row>
-                    <br></br>
-                    <Row className="upos-dash-row">
-                        <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h4>Daily Check-In</h4></Card.Body>
-                            </Card>
-                        </Col>
+                    <Row>
+                        {/*<Col>
+                            <Link to={"/dashboard"} className="btn btn-outline-primary upos-nav-btn active">List View</Link>
+                            <Link to={"/dashboard/graph"} className="btn btn-outline-primary upos-nav-btn">Graph View</Link>
+                        </Col>*/}
                     </Row>
-                    <Row className="upos-dash-row">
-                        <Col>
+                    <br></br>
+                    <Row>
+                        <Col sm={3}>
+                            <Row>
+                                
+                            </Row>
+                        </Col>
+                        <Col sm={6}>
                             <Link to={"/dashboard/anxiety"} style={{ textDecoration: 'none', color: "black"}}>
                                 <Card className="upos-dash-card">
                                     <Card.Body><h5>Anxiety</h5></Card.Body>
                                 </Card>
                             </Link>
-                        </Col>
-                        <Col>
                             <Link to={"/dashboard/depression"} style={{ textDecoration: 'none', color: "black"}}>
                                 <Card className="upos-dash-card">
                                     <Card.Body><h5>Depression</h5></Card.Body>
                                 </Card>
                             </Link>
-                        </Col>
-                    </Row>
-                    <Row className="upos-dash-row">
-                        <Col>
                             <Link to={"/dashboard/water"} style={{ textDecoration: 'none', color: "black"}}>
                                 <Card className="upos-dash-card">
                                     <Card.Body><h5>Water</h5></Card.Body>
                                 </Card>
                             </Link>
                         </Col>
-                        <Col>
-                            <Card className="upos-dash-card">
-                                <Card.Body><h5>Sleep</h5></Card.Body>
-                            </Card>
+                        <Col sm={3}>
                         </Col>
                     </Row>
                 </Container>

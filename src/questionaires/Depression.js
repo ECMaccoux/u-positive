@@ -30,7 +30,7 @@ import {
     },
   ];
 
-  function GenerateAssessment() {
+function GenerateAssessment() {
     const nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
     const q1 = [];
     const q2 = [];

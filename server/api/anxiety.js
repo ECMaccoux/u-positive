@@ -1,29 +1,29 @@
 const express = require('express')
 const db = require('../db')
 
-function getDepressionScoresByUserID(id) {
+function getAnxietyScoresByUserID(id) {
     return new Promise((resolve, reject) => {
-        db.query({sql: 'SELECT * FROM userDepression WHERE userID = ?', values: [id]}, function(err, row) {
+        db.query({sql: 'SELECT * FROM userAnxiety WHERE userID = ?', values: [id]}, function(err, row) {
             err ? reject(err) : resolve(row)
         })
     })
 }
 
-function setOrModifyDepressionScores(id, data) {
+function setOrModifyAnxietyScores(id, data) {
     return new Promise((resolve, reject) => {
         var today = new Date();
     today.toISOString().slice(0, 19).replace("T", " ");
-    db.query({sql: 'SELECT * FROM userDepression WHERE userID = ? AND dateSubmitted = ?', values: [id, today]}, function(err, rows) {
+    db.query({sql: 'SELECT * FROM userAnxiety WHERE userID = ? AND dateSubmitted = ?', values: [id, today]}, function(err, rows) {
         if (err) reject(err);
         else if (rows[0]) {
-            db.query({sql: 'UPDATE userDepression SET q1Answer = ?, q2Answer = ?, q3Answer = ? WHERE userID = ? AND dateSubmitted = ?', values: [data.q1Answer, data.q2Answer, data.q3Answer, id, today]}, function(err, rows) {
+            db.query({sql: 'UPDATE userDepression SET question1 = ?, question2 = ?, question3 = ? WHERE userID = ? AND dateSubmitted = ?', values: [data.question1, data.question2, data.question3, id, today]}, function(err, rows) {
                 if (err) reject(err);
                 else {
                     resolve(rows)
                 }
             })
         } else {
-            db.query({sql: 'INSERT INTO userDepression (q1Answer, q2Answer, q3Answer, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?)', values: [data.q1Answer, data.q2Answer, data.q3Answer, id, today, 2]}, function(err, rows) {
+            db.query({sql: 'INSERT INTO userDepression (question1, question2, question3, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?)', values: [data.question1, data.question2, data.question3, id, today, 2]}, function(err, rows) {
                 if (err) reject(err);
                 else {
                     resolve(rows)

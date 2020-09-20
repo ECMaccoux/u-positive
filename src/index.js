@@ -6,30 +6,21 @@ import TopNav from "./Components/TopNav";
 import Register from "./authentication/Register";
 import Login from "./authentication/Login";
 import DashboardRouter from "./DashboardRouter";
+import {loadDepressionScores, loadUser} from "./loadFunctions"
+
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       myInfo: {},
+      depressionScores: {}
     };
   }
 
   componentDidMount() {
-    fetch("/api/user", {
-      method: "GET",
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-          if(res[0]) {
-            this.setState({ myInfo: res[0] });
-          }
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("An error occurred while loading the page.");
+      Promise.all([loadUser(), loadDepressionScores()]).then((reso) => {
+        this.setState({ myInfo: reso[0], depressionScores: reso[1]});
       });
   }
 
@@ -45,7 +36,7 @@ class Main extends React.Component {
             <Login />
           </Route>
           <Route path="/dashboard">
-            <DashboardRouter myInfo={this.state.myInfo} />
+            <DashboardRouter myInfo={this.state.myInfo} depressionScores={this.state.depressionScores}/>
           </Route>
           <Route exact path="/">
             <LandingPage myInfo={this.state.myInfo}></LandingPage>

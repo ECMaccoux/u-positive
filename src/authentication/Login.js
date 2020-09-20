@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
-function login() {
+function login(e) {
     fetch('/login', {
         method: 'POST',
         headers: {
@@ -20,7 +20,9 @@ function login() {
     })
     
     .catch(err => {
-        console.log(err)
+        //console.log(err)
+        console.log(JSON.stringify(err))
+        window.location.href = '/login?failed=true'
     })
 }
 
@@ -29,10 +31,27 @@ export default class Login extends React.Component {
         super(props)
     }
 
+    renderWelcomeMsg() {
+        const query = new URLSearchParams(window.location.search)
+        if (query.get('created') === 'true') {
+            return <Alert variant='success' className='text-center'>
+                Your Account has been successfully created. Please log in.
+            </Alert>
+        } else if (query.get('failed') === 'true') {
+            return <Alert variant='danger' className='text-center'>
+                Username or Password is Incorrect
+            </Alert>
+        }
+        else {
+            return null
+        }
+    }
+
     render() {
         return <Container className='section mt-5'>
             <Row>
                 <Col md='12'>
+                    {this.renderWelcomeMsg()}
                 <h3 className='text-center'>U-Positive Login</h3>
                 <p className='text-center'>Find Yourself.</p>
                     <Form className='mt-5 mx-5'>
@@ -47,7 +66,7 @@ export default class Login extends React.Component {
                             <Form.Text className='ml-auto' style={{textAlignLast: 'end'}}><Link to='/register'>Forgot your Password</Link>.</Form.Text>
                         </Form.Group>
                         <div className='d-flex'>
-                        <Button className='ml-auto mt-5' onClick={e => {login()}}>Login</Button>
+                        <Button className='ml-auto mt-5' type='button' onClick={e => {login(e)}}>Login</Button>
                         </div>
                     </Form>
                 </Col>

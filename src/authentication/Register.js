@@ -1,31 +1,39 @@
 import React from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
-function submitData() {
-    fetch('/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: document.getElementById('email').value,
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            dob: document.getElementById('dob').value,
-            password1: document.getElementById('password1').value,
-            password2: document.getElementById('password2').value,
-            tac: document.getElementById('tac').value
-        })
-    })
-    .then(res => res.json())
-    .then(res => {console.log('successfully created account: ' + res.toString())})
-    .catch(err => console.log('An unexpected error occurred: ' + err))
-}
+
 
 export default class Register extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            redirect: false
+        }
+        this.submitData = this.submitData.bind(this)
+    }
+
+    submitData() {
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: document.getElementById('email').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                dob: document.getElementById('dob').value,
+                password1: document.getElementById('password1').value,
+                password2: document.getElementById('password2').value,
+                tac: document.getElementById('tac').value
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({redirect: true})
+        })
+        .catch(err => console.log('An unexpected error occurred: ' + err))
     }
 
     render() {
@@ -57,18 +65,18 @@ export default class Register extends React.Component {
                     <Form.Row>
                     <Form.Group as={Col} controlId='password1'>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control></Form.Control>
+                        <Form.Control type='password'></Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} controlId='password2'>
                         <Form.Label>Re-Enter Password</Form.Label>
-                        <Form.Control></Form.Control>
+                        <Form.Control type='password'></Form.Control>
                     </Form.Group>
                     </Form.Row>
                     <Form.Group controlId='tac' className='d-flex flex-reverse'>
                     <Form.Check></Form.Check>
                         <Form.Label>Agree to Terms and Conditions</Form.Label>
                     </Form.Group>
-                    <Button onClick={e => {submitData()}}>Create Account</Button>
+                    <Button onClick={e => {this.submitData()}}>Create Account</Button>
                     <Link to={"/"} className="btn">Cancel</Link>   
                     </Form>
                            
@@ -76,6 +84,7 @@ export default class Register extends React.Component {
                 <Col md='6' style={{alignSelf: 'center', display: 'flex'}}>
                     <img src='/img/MainLogo1000px.png' width='50%' className='m-auto'></img>
                 </Col>
+                {this.state.redirect && <Redirect push to='/login?created=true'></Redirect>}
             </Row>
         </Container>
     }

@@ -21,7 +21,7 @@ function login(e) {
     
     .catch(err => {
         //console.log(err)
-        console.log(JSON.stringify(err))
+        //console.log(JSON.stringify(err))
         window.location.href = '/login?failed=true'
     })
 }

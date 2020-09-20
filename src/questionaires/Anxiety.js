@@ -3,32 +3,48 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import {
-    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
   } from 'recharts';
 
-  const data = [
-    {
-      name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-    },
-    {
-      name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-    },
-    {
-      name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-    },
-    {
-      name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-    },
-    {
-      name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-    },
-    {
-      name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-    },
-    {
-      name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-    },
-  ];
+function submitForm() {
+    var q1Val = -1;
+    var q2Val = -1;
+    var q3Val = -1;
+
+    for(let i = 0; i < document.getElementsByName("anxietyQ1-radio").length; i++) {
+        if(document.getElementsByName("anxietyQ1-radio")[i].checked) {
+            q1Val = i;
+        }
+    }
+    for(let i = 0; i < document.getElementsByName("anxietyQ2-radio").length; i++) {
+        if(document.getElementsByName("anxietyQ2-radio")[i].checked) {
+            q2Val = i;
+        }
+    }
+    for(let i = 0; i < document.getElementsByName("anxietyQ3-radio").length; i++) {
+        if(document.getElementsByName("anxietyQ3-radio")[i].checked) {
+            q3Val = i;
+        }
+    }
+
+    if(q1Val == -1 || q2Val == -1 || q3Val == -1) {
+        alert("ERROR: Form not completely filled out");
+    }
+    else {
+        fetch('/api/anxiety', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                q1Answer: q1Val,
+                q2Answer: q2Val,
+                q3Answer: q3Val
+            })
+        })
+    }
+}
 
 function GenerateAssessment() {
     const nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
@@ -42,7 +58,7 @@ function GenerateAssessment() {
         q3.push(<Form.Check key={index} inline="true" name="anxietyQ3-radio" label={value} type="radio" id={"anxietyQ3-radio-" + value}></Form.Check>)
     }
 
-    return <Form className="m-5">
+    return <Form className="m-5"  onSubmit={submitForm}>
         <Form.Group controlId="anxietyQ1">
             <Form.Label>How has your anxiety been today?</Form.Label>
             <Form.Row>
@@ -119,18 +135,22 @@ export default class Anxiety extends React.Component {
                     </Row>
                     <Row>
                         <ResponsiveContainer width="100%" height={400}>
-                            <AreaChart
-                                data={data}
+                            <LineChart
+                                data={this.props.anxietyScores}
                                 margin={{
-                                top: 25, right: 30, left: 0, bottom: 0,
+                                top: 5, right: 30, left: 20, bottom: 5,
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="dateSubmitted" />
                                 <YAxis />
                                 <Tooltip />
-                                <Area type="monotone" dataKey="uv" stroke="#84aed8" fill="#84aed8" />
-                            </AreaChart>
+                                <Legend />
+                                <Line type="monotone" name="Overall" dataKey="q1Answer" stroke="#8884d8" />
+                                <Line type="monotone" name="Relaxation" dataKey="q2Answer" stroke="#82ca9d" />
+                                <Line type="monotone" name="Worry" dataKey="q3Answer" stroke="#cc9081" />
+                                <Line type="monotone" name="Daily Average" dataKey="averageToday" stroke="#ccc381" />
+                            </LineChart>
                         </ResponsiveContainer>
                     </Row>
                     <br></br>

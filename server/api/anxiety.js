@@ -23,7 +23,7 @@ function setOrModifyAnxietyScores(id, data) {
                 }
             })
         } else {
-            db.query({sql: 'INSERT INTO userAnxiety (q1Answer, q2Answer, q3Answer, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?)', values: [data.q1Answer, data.q2Answer, data.q3Answer, id, today, 2]}, function(err, rows) {
+            db.query({sql: 'INSERT INTO userAnxiety (q1Answer, q2Answer, q3Answer, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?, ?)', values: [data.q1Answer, data.q2Answer, data.q3Answer, today, id, 2]}, function(err, rows) {
                 if (err) reject(err);
                 else {
                     resolve(rows)
@@ -50,7 +50,7 @@ anxietyRouter.get('/', (req, res) => {
 
 anxietyRouter.post('/', (req, res) => {
     const data = req.body;
-    setOrModifyAnxietyScores(req.user.id, data)
+    setOrModifyAnxietyScores(req.user.userID, data)
     .then(results => {
         res.json(results).status(200)
     })

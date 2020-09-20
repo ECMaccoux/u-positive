@@ -33,4 +33,21 @@ function loadUser() {
     })
 }
 
-module.exports = {loadDepressionScores, loadUser}
+function loadAnxietyScores() {
+    return new Promise((resolve, reject) => {
+        fetch("/api/anxiety")
+            .then(res => {
+                return res.json()
+            })
+            .then(res => {
+                res.sort((a,b) => new Date(a.dateSubmitted).getTime() >= new Date(b.dateSubmitted).getTime() ? 1 : -1),
+                resolve(res)
+            })
+            .catch(err => {
+                alert('Something went wrong'),
+                reject(err)
+            })
+    })
+}
+
+module.exports = {loadDepressionScores, loadUser, loadAnxietyScores}

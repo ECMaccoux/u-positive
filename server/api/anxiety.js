@@ -16,14 +16,14 @@ function setOrModifyAnxietyScores(id, data) {
     db.query({sql: 'SELECT * FROM userAnxiety WHERE userID = ? AND dateSubmitted = ?', values: [id, today]}, function(err, rows) {
         if (err) reject(err);
         else if (rows[0]) {
-            db.query({sql: 'UPDATE userDepression SET question1 = ?, question2 = ?, question3 = ? WHERE userID = ? AND dateSubmitted = ?', values: [data.question1, data.question2, data.question3, id, today]}, function(err, rows) {
+            db.query({sql: 'UPDATE userAnxiety SET q1Answer = ?, q2Answer = ?, q3Answer = ? WHERE userID = ? AND dateSubmitted = ?', values: [data.q1Answer, data.q2Answer, data.q3Answer, id, today]}, function(err, rows) {
                 if (err) reject(err);
                 else {
                     resolve(rows)
                 }
             })
         } else {
-            db.query({sql: 'INSERT INTO userDepression (question1, question2, question3, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?)', values: [data.question1, data.question2, data.question3, id, today, 2]}, function(err, rows) {
+            db.query({sql: 'INSERT INTO userAnxiety (q1Answer, q2Answer, q3Answer, dateSubmitted, userID, surveyID) VALUES (?, ?, ?, ?, ?)', values: [data.q1Answer, data.q2Answer, data.q3Answer, id, today, 2]}, function(err, rows) {
                 if (err) reject(err);
                 else {
                     resolve(rows)
@@ -35,10 +35,10 @@ function setOrModifyAnxietyScores(id, data) {
     
 }
 
-const depressionRouter = express.Router()
+const anxietyRouter = express.Router()
 
-depressionRouter.get('/', (req, res) => {
-    getDepressionScoresByUserID(req.user.userID)
+anxietyRouter.get('/', (req, res) => {
+    getAnxietyScoresByUserID(req.user.userID)
     .then(results => {
         res.json(results)
     })
@@ -48,9 +48,9 @@ depressionRouter.get('/', (req, res) => {
     })
 })
 
-depressionRouter.post('/', (req, res) => {
+anxietyRouter.post('/', (req, res) => {
     const data = req.body;
-    setOrModifyDepressionScores(req.user.id, data)
+    setOrModifyAnxietyScores(req.user.id, data)
     .then(results => {
         res.json(results).status(200)
     })
@@ -60,4 +60,4 @@ depressionRouter.post('/', (req, res) => {
     })
 })
 
-module.exports = depressionRouter
+module.exports = anxietyRouter
